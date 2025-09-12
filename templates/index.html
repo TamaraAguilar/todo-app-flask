@@ -42,7 +42,7 @@
         <li>
           {{ todo.title }} - {% if todo.complete %}Completada{% else
           %}Pendiente{% endif %}
-          <a href="/complete/{{ todo.id }}">[Completar]</a>
+          <a href="/update/{{ todo.id }}">[Completar]</a>
           <a href="/delete/{{ todo.id }}">[Eliminar]</a>
         </li>
         {% endfor %}
