@@ -30,37 +30,40 @@
       class="container-fluid vh-100 d-flex align-items-center justify-content-center"
     >
       <div class="row w-100 justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6 central-card p-4">
-          <h1 class="pixelify-sans-700">Todo App</h1>
+        <div class="col-12 col-md-8 col-lg-6">
+          <!-- Todo List Card -->
+          <div class="card shadow-lg rounded-4 central-card p-4">
+            <h1 class="pixelify-sans-700">Todo App</h1>
 
-          <h5 class="card-title">Agregar nueva tarea</h5>
-          <p class="card-text">Ingresa el título de la nueva tarea.</p>
+            <h5 class="card-title">Agregar nueva tarea</h5>
+            <p class="card-text">Ingresa el título de la nueva tarea.</p>
 
-          <form action="/add" method="POST">
-            <div>
-              <label for="title" class="form-label">Todo Title</label>
-              <input
-                class="form-control"
-                type="text"
-                id="title"
-                name="title"
-                placeholder="Nueva tarea"
-              />
-              <br />
-              <button type="submit" class="btn btn-primary">Agregar</button>
-            </div>
-          </form>
+            <form action="/add" method="POST">
+              <div>
+                <label for="title" class="form-label">Todo Title</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="title"
+                  name="title"
+                  placeholder="Nueva tarea"
+                />
+                <br />
+                <button type="submit" class="btn btn-primary">Agregar</button>
+              </div>
+            </form>
 
-          <ul>
-            {% for todo in todo_list %}
-            <li>
-              {{ todo.title }} - {% if todo.complete %}Completada{% else
-              %}Pendiente{% endif %}
-              <a href="/update/{{ todo.id }}">[Completar]</a>
-              <a href="/delete/{{ todo.id }}">[Eliminar]</a>
-            </li>
-            {% endfor %}
-          </ul>
+            <ul>
+              {% for todo in todo_list %}
+              <li>
+                {{ todo.title }} - {% if todo.complete %}Completada{% else
+                %}Pendiente{% endif %}
+                <a href="/update/{{ todo.id }}">[Completar]</a>
+                <a href="/delete/{{ todo.id }}">[Eliminar]</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
