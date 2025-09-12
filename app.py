@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
-    description = db.Column(db.String(1000))
+    description = db.Column(db.String(1000), default='')
     complete = db.Column(db.Boolean)
 
 @app.route('/')
@@ -26,10 +26,10 @@ def index():
 def add():
     #add a new todo
     title = request.form['title']
-    description = request.form['description']
+    #description = request.form['description']
     complete= False # new tasks are incomplete by default
     
-    new_todo = Todo(title=title, description=description, complete=complete)
+    new_todo = Todo(title=title, complete=complete)
     
     #add to the database
     db.session.add(new_todo)
