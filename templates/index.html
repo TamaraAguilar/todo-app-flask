@@ -5,6 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
     {% block styles %}
     <!-- Bootstrap CSS -->
     {{ bootstrap.load_css() }} {% endblock %}
@@ -14,39 +19,43 @@
   </head>
   <body>
     {% block content %}
-    <div class="container">
-      <h1>Todo App</h1>
+    <div
+      class="container-fluid vh-100 d-flex align-items-center justify-content-center"
+    >
+      <div class="row w-100 justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 central-card p-4">
+          <h1>Todo App</h1>
 
-      <form action="/add" method="POST">
-        <div>
-          <label for="title">Todo Title</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            placeholder="Nueva tarea"
-          />
-          <input
-            type="text"
-            id="description"
-            name="description"
-            placeholder="Descripción"
-          />
-          <br />
-          <button type="submit" class="btn btn-primary">Agregar</button>
+          <h5 class="card-title">Agregar nueva tarea</h5>
+          <p class="card-text">Ingresa el título de la nueva tarea.</p>
+
+          <form action="/add" method="POST">
+            <div>
+              <label for="title" class="form-label">Todo Title</label>
+              <input
+                class="form-control"
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Nueva tarea"
+              />
+              <br />
+              <button type="submit" class="btn btn-primary">Agregar</button>
+            </div>
+          </form>
+
+          <ul>
+            {% for todo in todo_list %}
+            <li>
+              {{ todo.title }} - {% if todo.complete %}Completada{% else
+              %}Pendiente{% endif %}
+              <a href="/update/{{ todo.id }}">[Completar]</a>
+              <a href="/delete/{{ todo.id }}">[Eliminar]</a>
+            </li>
+            {% endfor %}
+          </ul>
         </div>
-      </form>
-
-      <ul>
-        {% for todo in todo_list %}
-        <li>
-          {{ todo.title }} - {% if todo.complete %}Completada{% else
-          %}Pendiente{% endif %}
-          <a href="/update/{{ todo.id }}">[Completar]</a>
-          <a href="/delete/{{ todo.id }}">[Eliminar]</a>
-        </li>
-        {% endfor %}
-      </ul>
+      </div>
     </div>
 
     {% endblock %} {% block scripts %}

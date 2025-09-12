@@ -1,0 +1,17 @@
+body,
+html {
+  margin: 0;
+  width: 100%;
+}
+
+html {
+  background-color: #b3da8c;
+}
+
+body {
+  background-color: #b3da8c !important;
+}
+
+.central-card {
+  background-color: #fffbe4;
+}
