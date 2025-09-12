@@ -5,6 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='img/icon-yellow_flower.png') }}"
+    />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -33,7 +40,15 @@
         <div class="col-12 col-md-8 col-lg-6">
           <!-- Todo List Card -->
           <div class="card shadow-lg rounded-4 central-card p-4">
-            <h1 class="pixelify-sans-700">Todo App</h1>
+            <div class="d-flex text-center">
+              <img
+                src="{{ url_for('static', filename='img/icon-yellow_flower.png') }}"
+                alt="Logo"
+                class="logo mb-3 me-2"
+                style="width: 50px; height: 50px"
+              />
+              <h1 class="pixelify-sans-700">To-do List</h1>
+            </div>
 
             <h5 class="card-title">Agregar nueva tarea</h5>
             <p class="card-text">Ingresa el título de la nueva tarea.</p>
