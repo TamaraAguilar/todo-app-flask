@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% block head %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }} {% endblock %}
+
+    <title>todo app</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}
+    <div class="container">
+      <h1>Todo App</h1>
+
+      <form action="/add" method="POST">
+        <div>
+          <label for="title">Todo Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Nueva tarea"
+          />
+          <input
+            type="text"
+            id="description"
+            name="description"
+            placeholder="Descripción"
+          />
+          <br />
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+      </form>
+
+      <ul>
+        {% for todo in todo_list %}
+        <li>
+          {{ todo.title }} - {% if todo.complete %}Completada{% else
+          %}Pendiente{% endif %}
+          <a href="/complete/{{ todo.id }}">[Completar]</a>
+          <a href="/delete/{{ todo.id }}">[Eliminar]</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% endblock %} {% block scripts %}
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }} {% endblock %}
+  </body>
+</html>
