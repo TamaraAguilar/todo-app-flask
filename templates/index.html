@@ -10,6 +10,13 @@
       href="{{ url_for('static', filename='css/style.css') }}"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
     {% block styles %}
     <!-- Bootstrap CSS -->
     {{ bootstrap.load_css() }} {% endblock %}
@@ -17,14 +24,14 @@
     <title>todo app</title>
     {% endblock %}
   </head>
-  <body>
+  <body class="pixelify-sans-400">
     {% block content %}
     <div
       class="container-fluid vh-100 d-flex align-items-center justify-content-center"
     >
       <div class="row w-100 justify-content-center">
         <div class="col-12 col-md-8 col-lg-6 central-card p-4">
-          <h1>Todo App</h1>
+          <h1 class="pixelify-sans-700">Todo App</h1>
 
           <h5 class="card-title">Agregar nueva tarea</h5>
           <p class="card-text">Ingresa el título de la nueva tarea.</p>
