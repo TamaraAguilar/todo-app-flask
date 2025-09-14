@@ -66,18 +66,57 @@
                 />
                 <br />
                 <button type="submit" class="btn btn-primary">Agregar</button>
+                <br />
+                <hr />
               </div>
             </form>
             <br />
+            <h5 class="card-title">Lista de tareas</h5>
             <ul class="mt-2 todo-list">
-              {% for todo in todo_list %}
+              {% if todo_list %} {% for todo in todo_list %}
               <li>
+                {% if todo.id == edit_id %}
+                <!-- Edit mode-->
+                <form method="POST" action="/update_title/{{ todo.id }}">
+                  <input
+                    type="text"
+                    name="title"
+                    value="{{ todo.title }}"
+                    class="form-control"
+                    required
+                  />
+                  <button type="submit" class="btn btn-success btn-sm mt-2">
+                    Guardar
+                  </button>
+                  <a href="/" class="btn btn-secondary btn-sm mt-2">Cancelar</a>
+                </form>
+                {% else %}
+                <!--- Checkbox --->
+                <form
+                  method="POST"
+                  action="/toggle_complete/{{ todo.id }}"
+                  style="display: inline"
+                >
+                  <input
+                    type="checkbox"
+                    {%
+                    if
+                    todo.complete
+                    %}checked{%
+                    endif
+                    %}
+                    onchange="this.form.submit()"
+                  />
+                </form>
                 {{ todo.title }} - {% if todo.complete %}Completada{% else
                 %}Pendiente{% endif %}
-                <a href="/update/{{ todo.id }}">[Completar]</a>
+                <a href="/edit/{{ todo.id }}">[Editar]</a>
                 <a href="/delete/{{ todo.id }}">[Eliminar]</a>
+                {% endif %}
               </li>
-              {% endfor %}
+              {% endfor %} {% else %}
+              <p>No hay tareas agregadas</p>
+              {% endif %}
             </ul>
           </div>
         </div>

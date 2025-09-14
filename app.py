@@ -46,6 +46,28 @@ def update(todo_id):
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/edit/<int:todo_id>')
+def edit(todo_id):
+    #show the same page but with this todo in edit mode
+    todo_list = Todo.query.all()
+    return render_template('index.html', todo_list=todo_list, edit_id=todo_id)
+
+@app.route('/update_title/<int:todo_id>', methods=['POST'])
+def update_title(todo_id):
+    #update the todo title
+    todo = Todo.query.filter_by(id=todo_id).first()
+    todo.title = request.form['title']
+    db.session.commit()
+    return redirect(url_for('index'))
+
+@app.route('/toggle_complete/<int:todo_id>', methods=['POST'])
+def toggle_complete(todo_id):
+    # toggle the complete status
+    todo = Todo.query.filter_by(id=todo_id).first()
+    todo.complete = not todo.complete
+    db.session.commit()
+    return redirect(url_for('index'))
+
 @app.route('/delete/<int:todo_id>')
 def delete(todo_id):
     #delete a todo
